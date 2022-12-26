@@ -1,0 +1,23 @@
+{
+    "eslint.workingDirectories": [
+        {
+            "changeProcessCWD": true,
+            "directory": "./frontend"
+        },
+        {
+            "changeProcessCWD": true,
+            "directory": "./backend"
+        },
+        {
+            "changeProcessCWD": true,
+            "directory": "./shared"
+        }
+    ],
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "editor.formatOnType": true,
+    "javascript.format.semicolons": "remove",
+    "typescript.format.semicolons": "remove"
+}

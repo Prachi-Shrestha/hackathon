@@ -1,0 +1,60 @@
+{
+    "name": "junctionapp",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "better-npm-run start:prod",
+        "dev": "better-npm-run start:dev",
+        "debug": "better-npm-run start:debug",
+        "build": "better-npm-run setup && better-npm-run build",
+        "setup": "better-npm-run setup",
+        "dev:frontend": "cd frontend && npm start",
+        "dev:backend": "cd backend && npm run dev",
+        "db-sync:prod-to-local": "sh ./scripts/sync-production-to-local.sh",
+        "db-sync:prod-to-dev": "sh ./scripts/sync-production-to-dev.sh",
+        "db-sync:prod-to-staging": "sh ./scripts/sync-production-to-staging.sh",
+        "db-sync:dev-to-local": "sh ./scripts/sync-dev-to-local.sh",
+        "pre-commit:frontend": "cd frontend && npm run precommit",
+        "pre-commit:backend": "cd backend && npm run precommit",
+        "pre-commit:shared": "cd shared && npm run precommit",
+        "auth0": "a0deploy import -c ./auth0/config.json -i ./auth0/tenant.yaml"
+    },
+    "betterScripts": {
+        "setup": "better-npm-run setup:backend && better-npm-run setup:frontend && better-npm-run setup:shared",
+        "setup:frontend": "cd frontend && npm install",
+        "setup:backend": "cd backend && npm ci",
+        "setup:shared": "cd shared && npm ci",
+        "start:dev": "npm-run-all --parallel dev:frontend dev:backend",
+        "start:debug": "npm-run-all --parallel dev:frontend dev:backend --debug-brk=2222",
+        "start:prod": "cd backend && npm start",
+        "build": "rm -rf ./backend/build && cd frontend && npm run build && cp -r ./build ../backend/build"
+    },
+    "pre-commit": [
+        "pre-commit:frontend",
+        "pre-commit:backend",
+        "pre-commit:shared"
+    ],
+    "author": "Juuso Lappalainen",
+    "license": "ISC",
+    "devDependencies": {
+        "npm-run-all": "^4.1.5",
+        "pre-commit": "^1.2.2"
+    },
+    "dependencies": {
+        "auth0-deploy-cli": "^5.5.7",
+        "better-npm-run": "^0.1.1",
+        "if-env": "^1.0.4",
+        "pino": "^6.3.1",
+        "pino-pretty": "^4.0.0",
+        "react-helmet": "^6.1.0",
+        "react-pdf": "^4.1.0",
+        "yup": "^0.29.1"
+    },
+    "engines": {
+        "node": "12.3.1",
+        "npm": "6.9.0"
+    },
+    "type": "module"
+}

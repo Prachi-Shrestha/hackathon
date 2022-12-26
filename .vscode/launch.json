@@ -1,0 +1,28 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+  {
+    "name": "Attach to Chrome",
+    "port": 3000,
+    "request": "attach",
+    "type": "chrome",
+    "webRoot": "${workspaceFolder}"
+  },
+    {
+      "name": "Launch Chrome",
+      "request": "launch",
+      "type": "chrome",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}"
+    },
+
+      {
+          "type": "node",
+          "request": "attach",
+          "name": "Node: Nodemon",
+          "processId": "${command:PickProcess}",
+          "restart": true,
+          "protocol": "inspector",
+      },
+  ]
+}
